@@ -7,7 +7,9 @@ import {
   CustomButton,
   EditorContainer,
   CustomTextInput,
+  ListItem,
 } from '../Editor/styledComponents'
+import {CustomParagraph} from './styledComponents'
 
 class EditorItem extends Component {
   state = {textInput: ''}
@@ -35,6 +37,8 @@ class EditorItem extends Component {
     const textBold = isBold ? 'bold' : 'normal'
     const textItalic = isItalic ? 'italic' : 'normal'
     const textUnderline = isUnderline ? 'underline' : 'normal'
+    const hasStyle = isBold || isItalic || isUnderline
+    console.log(textBold, textItalic, textUnderline)
     const clickedBold = () => {
       boldClicked()
     }
@@ -50,39 +54,54 @@ class EditorItem extends Component {
     return (
       <EditorContainer>
         <EditorHeaderContainer>
-          <CustomButton
-            type="button"
-            textColor={boldColor}
-            onClick={clickedBold}
-          >
-            <VscBold size={25} color={boldColor} />
-          </CustomButton>
-          <CustomButton
-            type="button"
-            textColor={italicColor}
-            onClick={clickedItalic}
-          >
-            <GoItalic size={25} color={italicColor} />
-          </CustomButton>
-          <CustomButton
-            type="button"
-            textColor={underlineColor}
-            onClick={clickedUnderline}
-          >
-            <AiOutlineUnderline size={25} color={underlineColor} />
-          </CustomButton>
+          <ListItem>
+            <CustomButton
+              type="button"
+              textColor={boldColor}
+              onClick={clickedBold}
+              data-testid="bold"
+            >
+              <VscBold size={25} color={boldColor} />
+            </CustomButton>
+          </ListItem>
+          <ListItem>
+            <CustomButton
+              type="button"
+              textColor={italicColor}
+              onClick={clickedItalic}
+              data-testid="italic"
+            >
+              <GoItalic size={25} color={italicColor} />
+            </CustomButton>
+          </ListItem>
+          <ListItem>
+            <CustomButton
+              type="button"
+              textColor={underlineColor}
+              onClick={clickedUnderline}
+              data-testid="underline"
+            >
+              <AiOutlineUnderline size={25} color={underlineColor} />
+            </CustomButton>
+          </ListItem>
         </EditorHeaderContainer>
-        <CustomTextInput
-          rows="5"
-          cols="30"
-          isBold={textBold}
-          isItalic={textItalic}
-          isUnderline={textUnderline}
-          value={textInput}
-          onChange={this.changeTextInput}
-        >
-          {textInput}
-        </CustomTextInput>
+        {!hasStyle && (
+          <CustomTextInput
+            rows="5"
+            cols="30"
+            value={textInput}
+            onChange={this.changeTextInput}
+          />
+        )}
+        {hasStyle && (
+          <CustomParagraph
+            bold={textBold}
+            italic={textItalic}
+            underline={textUnderline}
+          >
+            {textInput}
+          </CustomParagraph>
+        )}
       </EditorContainer>
     )
   }

@@ -31,7 +31,7 @@ class Editor extends Component {
   }
 
   render() {
-    const {isBold, isItalic, isUnderline} = this.state
+    const {isBold, isItalic, isUnderline, hasStyle} = this.state
     console.log(isBold, isItalic, isUnderline)
 
     return (

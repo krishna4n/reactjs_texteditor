@@ -45,14 +45,16 @@ export const CustomButton = styled.button`
   border: none;
   outline: none;
 
-  color: props => props.color;
+  color: ${props => props.color};
 `
 
-export const EditorHeaderContainer = styled.div`
+export const EditorHeaderContainer = styled.ul`
+  list-style-type: none;
   height: 15%;
   border-bottom: 1px solid #334155;
   padding: 4%;
 `
+export const ListItem = styled.li``
 export const CustomTextInput = styled.textarea`
   background: transparent;
   padding: 20px;
@@ -60,3 +62,4 @@ export const CustomTextInput = styled.textarea`
   outline: none;
   color: #ffffff;
 `
+export const ParagraphContainer = styled.p``
